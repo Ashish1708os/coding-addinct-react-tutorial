@@ -4,31 +4,47 @@ import ReactDom from "react-dom";
 import "./index.css";
 
 //setup var
-const author = "Mark Manson";
-const title = "The Subtle Art of Not Giving a F*ck";
-const image =
-  "https://images-eu.ssl-images-amazon.com/images/I/814jC%2BrODgL._AC_UL200_SR200,200_.jpg";
+const firstBook = {
+  img: "https://images-eu.ssl-images-amazon.com/images/I/814jC%2BrODgL._AC_UL200_SR200,200_.jpg",
+  title: "The Subtle Art of Not Giving a F*ck",
+  author: "Mark Manson",
+};
+
+const secondBook = {
+  img: "https://images-eu.ssl-images-amazon.com/images/I/81lZ-9E4F-S._AC_UL200_SR200,200_.jpg",
+  title: "The Diary of a Young Girl",
+  author: "Anne Frank",
+};
 
 function BookList() {
   return (
     <section className="booklist">
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
+      <Book
+        img={firstBook.img}
+        title={firstBook.title}
+        author={firstBook.author}
+      >
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
+          distinctio nemo minus molestias, rem a veniam eius adipisci. Ab, odit
+          veritatis?
+        </p>
+      </Book>
+      <Book
+        img={secondBook.img}
+        title={secondBook.title}
+        author={secondBook.author}
+      />
     </section>
   );
 }
 
-const Book = () => {
+const Book = ({ img, title, author, children }) => {
+  // console.log(props);
+  // const { img, title, author } = props; // destructuring props
   return (
     <article className="book">
-      <img src={image} alt="book" />
+      <img src={img} alt="book" />
       <h1>{title}</h1>
       <h4
         style={{
@@ -37,8 +53,9 @@ const Book = () => {
           marginTop: "0.25rem",
         }}
       >
-        {author.toUpperCase()}
+        {author}
       </h4>
+      {children}
     </article>
   );
 };
